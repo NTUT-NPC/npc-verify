@@ -8,7 +8,7 @@
       "email": "yaoandy107@gmail.com"
     }
   },
-  "host": "api.ntut.club:9876",
+  "host": "api.ntut.club",
   "basePath": "/v1",
   "tags": [
     {
@@ -16,7 +16,7 @@
     }
   ],
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/member": {
