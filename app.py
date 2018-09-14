@@ -8,6 +8,7 @@ CORS(app)
 
 SALT = 'Make NPC great again!'
 
+# API: 驗證社員 id 是否在資料庫中
 @app.route('/v1/verify', methods=['POST'])
 def verify():
     uid = request.form['uid']
@@ -19,6 +20,7 @@ def verify():
     else:
         return Response(status=403)
 
+# 生成社員 id
 def generate_uid(studentId):
     s = hashlib.sha256()
     s.update(studentId.encode("utf-8"))
@@ -27,6 +29,7 @@ def generate_uid(studentId):
     s.update('Make NPC great again!'.encode('utf-8'))
     return s.hexdigest()
 
+# API: 透過學號新增社員
 @app.route('/v1/member', methods=['POST'])
 def add_member():
     studentId = request.form['studentId']
