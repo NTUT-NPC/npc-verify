@@ -39,7 +39,7 @@ def add_member():
     c.execute('''INSERT INTO accounts (uid,studentId)
         VALUES (?, ?)''', (uid, studentId))
     conn.commit()
-    return Response(uid, status=200, headers={})
+    return Response(uid, status=200)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=9876)
