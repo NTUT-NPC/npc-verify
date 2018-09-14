@@ -1,8 +1,11 @@
 from flask import Flask, request, Response
 import hashlib
 import sqlite3
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
+
 SALT = 'Make NPC great again!'
 
 @app.route('/v1/verify', methods=['POST'])
@@ -36,7 +39,7 @@ def add_member():
     c.execute('''INSERT INTO accounts (uid,studentId)
         VALUES (?, ?)''', (uid, studentId))
     conn.commit()
-    return Response(uid, status=200)
+    return Response(uid, status=200, headers={})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=9876)
