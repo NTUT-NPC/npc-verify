@@ -1,0 +1,79 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "用來驗證北科程式設計社社員身份用系統。",
+    "version": "1.0.0",
+    "title": "NPC 社員驗證系統 API",
+    "contact": {
+      "email": "yaoandy107@gmail.com"
+    }
+  },
+  "host": "35.189.182.246:9876",
+  "basePath": "/v1",
+  "tags": [
+    {
+      "name": "v1"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/member": {
+      "post": {
+        "tags": [
+          "v1"
+        ],
+        "summary": "新增社員",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "studentId",
+            "description": "需要新增進資料庫的社員學號",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "新增成功"
+          },
+          "500": {
+            "description": "新增失敗"
+          }
+        }
+      }
+    },
+    "/verify": {
+      "post": {
+        "tags": [
+          "v1"
+        ],
+        "summary": "驗證社員身份",
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "name": "uid",
+            "in": "formData",
+            "description": "待驗證的社員 id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "驗證成功"
+          },
+          "400": {
+            "description": "驗證失敗"
+          }
+        }
+      }
+    }
+  }
+}
