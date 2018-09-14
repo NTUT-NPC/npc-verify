@@ -8,7 +8,7 @@
       "email": "yaoandy107@gmail.com"
     }
   },
-  "host": "35.189.182.246:9876",
+  "host": "api.ntut.club:9876",
   "basePath": "/v1",
   "tags": [
     {
