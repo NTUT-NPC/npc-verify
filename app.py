@@ -2,20 +2,29 @@ from flask import Flask, request, Response
 import hashlib
 import sqlite3
 from flask_cors import CORS
+from  pymongo import MongoClient
 
 app = Flask(__name__)
 CORS(app)
+m = MongoClient(host='localhost', port=27017)
+db = m.npc_db
+collection = db.record_activity
 
 SALT = 'Make NPC great again!'
+
+def recordActivity(json):
+    collection.insert_one(json)
 
 # API: 驗證社員 id 是否在資料庫中
 @app.route('/v1/verify', methods=['POST'])
 def verify():
-    uid = request.form['uid']
+    json = request.get_json(force=True)
+    uid = json['uid']
     conn = sqlite3.connect('accounts.db')
     c = conn.cursor()
     c.execute('SELECT uid FROM accounts where uid=?', (uid,))
     if c.fetchone():
+        recordActivity(json)
         return Response(status=200)
     else:
         return Response(status=403)
