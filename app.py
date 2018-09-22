@@ -20,11 +20,12 @@ def recordActivity(json):
 def verify():
     json = request.get_json(force=True)
     uid = json['uid']
+    data = json['data']
     conn = sqlite3.connect('accounts.db')
     c = conn.cursor()
     c.execute('SELECT uid FROM accounts where uid=?', (uid,))
     if c.fetchone():
-        recordActivity(json)
+        recordActivity(data)
         return Response(status=200)
     else:
         return Response(status=403)
