@@ -6,7 +6,7 @@ from  pymongo import MongoClient
 
 app = Flask(__name__)
 CORS(app)
-m = MongoClient(host='localhost', port=27017)
+m = MongoClient('mongo', port=27017)
 db = m.npc_db
 collection = db.record_activity
 
