@@ -8,7 +8,7 @@
       "email": "yaoandy107@gmail.com"
     }
   },
-  "host": "api.ntut.club",
+  "host": "35.189.182.246:9876",
   "basePath": "/v1",
   "tags": [
     {
@@ -16,7 +16,8 @@
     }
   ],
   "schemes": [
-    "https"
+    "https",
+    "http"
   ],
   "paths": {
     "/member": {
@@ -54,22 +55,44 @@
         ],
         "summary": "驗證社員身份",
         "consumes": [
-          "application/x-www-form-urlencoded"
+          "application/json",
+          "application/xml"
+        ],
+        "produces": [
+          "application/xml",
+          "application/json"
         ],
         "parameters": [
           {
-            "name": "uid",
-            "in": "formData",
-            "description": "待驗證的社員 id",
+            "in": "body",
+            "name": "data",
+            "description": "Pet object that needs to be added to the store",
             "required": true,
-            "type": "string"
+            "schema": {
+              "type": "object",
+              "properties": {
+                "uid": {
+                  "type": "string",
+                  "example": "9d67f8519245dad9c056a2c3d9cb10e62abeba26718873392f5949c787332212"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "...": {
+                      "type": "string",
+                      "example": "..."
+                    }
+                  }
+                }
+              }
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "驗證成功"
           },
-          "403": {
+          "400": {
             "description": "驗證失敗"
           }
         }
