@@ -35,7 +35,7 @@ def generate_uid(studentId):
     s.update(studentId.encode("utf-8"))
     hash1 = s.hexdigest()
     s.update(hash1.encode("utf-8"))
-    s.update('Make NPC great again!'.encode('utf-8'))
+    s.update(SALT.encode('utf-8'))
     return s.hexdigest()
 
 # API: 透過學號新增社員
