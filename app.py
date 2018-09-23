@@ -7,7 +7,7 @@ import json
 
 app = Flask(__name__)
 CORS(app)
-m = MongoClient('localhost', port=27017)
+m = MongoClient('mongo', port=27017)
 db = m.npc_db
 collection = db.record_activity
 
