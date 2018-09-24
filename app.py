@@ -5,6 +5,9 @@ from flask_cors import CORS
 from  pymongo import MongoClient
 import json
 from  gevent.pywsgi import WSGIServer
+from gevent import monkey
+
+monkey.patch_all()
 
 app = Flask(__name__)
 CORS(app)
