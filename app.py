@@ -28,7 +28,7 @@ def verify():
     info = c.fetchone()
     if info:
         recordActivity(data)
-        return Response(json.dumps({'uid': info[1]], 'name': info[2], 'class': info[3]}), mimetype='application/json', status=200)
+        return Response(json.dumps({'uid': info[1], 'name': info[2], 'class': info[3]}), mimetype='application/json', status=200)
     else:
         return Response(status=403)
 
