@@ -4,6 +4,7 @@ import sqlite3
 from flask_cors import CORS
 from  pymongo import MongoClient
 import json
+from  gevent.pywsgi import WSGIServer
 
 app = Flask(__name__)
 CORS(app)
@@ -61,4 +62,5 @@ def add_member():
     return Response(uid, status=200)
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=9876)
+    http_server = WSGIServer(('0.0.0.0', 9876), app)
+    http_server.serve_forever()
